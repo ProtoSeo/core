@@ -9,22 +9,28 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-//
+@Configuration
 public class AppConfig {
+
+    @Bean
     public MemberService memberService(){
         return new MemberServiceImpl(memberRepository());
     }
 
+    @Bean
     public OrderService orderService(){
         return new OrderServiceImpl(memberRepository(),discountPolicy());
     }
 
     // 이렇게 하면, 중복을 제거할 수 있고, 역할과 구현 클래스가 한눈에 들어온다.
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
-
+    @Bean
     public DiscountPolicy discountPolicy(){
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
