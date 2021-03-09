@@ -27,7 +27,8 @@ public class AppConfig {
     @Bean
     public OrderService orderService(){
         System.out.println("Call AppConfig.orderService");
-        return new OrderServiceImpl(memberRepository(),discountPolicy());
+//        return new OrderServiceImpl(memberRepository(),discountPolicy());
+        return null;
     }
 
     // 이렇게 하면, 중복을 제거할 수 있고, 역할과 구현 클래스가 한눈에 들어온다.
